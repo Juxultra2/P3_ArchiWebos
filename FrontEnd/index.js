@@ -6,7 +6,7 @@ const apiUrlCategories = 'http://localhost:5678/api/categories';
 async function fetchWorks() {
     try {
         // Utiliser la constante apiUrl pour l'appel à l'API
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrlWorks);
         // Vérifie si la réponse est correcte
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -15,6 +15,7 @@ async function fetchWorks() {
         const works = await response.json();
         // Affiche les travaux récupérés
         displayWorks(works);
+        console.log(works);
     } catch (error) {
         console.error('Error fetching works:', error);
     }
@@ -63,8 +64,8 @@ async function fetchCategories() {
 
 // Fonction pour afficher les catégories dans le menu de filtres
 function displayCategories(categories) {
-    const filterContainer = document.createElement('div');
-    filterContainer.className = 'filter-container';
+    const filterContainer = document.getElementById('filters');
+    filterContainer.innerHTML = ''; // Efface tous les filtres existants
 
     // Ajout d'un bouton pour afficher tous les travaux
     const allButton = document.createElement('button');
@@ -79,9 +80,8 @@ function displayCategories(categories) {
         button.addEventListener('click', () => fetchWorksByCategory(category.id));
         filterContainer.appendChild(button);
     });
-
-    document.body.insertBefore(filterContainer, document.querySelector('main'));
 }
+
 
 
 // Fonction pour récupérer les travaux par catégorie depuis l'API
@@ -99,19 +99,7 @@ async function fetchWorksByCategory(categoryId) {
     }
 }
 
-// Modifier la fonction fetchWorks pour qu'elle soit appelée par défaut
-async function fetchWorks() {
-    try {
-        const response = await fetch(apiUrlWorks);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const works = await response.json();
-        displayWorks(works);
-    } catch (error) {
-        console.error('Error fetching works:', error);
-    }
-}
+
 
 // Fonction pour afficher les travaux dans la galerie
 function displayWorks(works) {

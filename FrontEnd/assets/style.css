@@ -186,3 +186,95 @@ footer nav ul {
 	margin: 2em
 }
 
+/* Style pour les filtres de la galery */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    font-family: 'Work Sans';
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #1D6154;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.filters button.active,
+.filters button:hover {
+    background-color: #164d3d;
+}
+
+
+/* Style pour la page de login */
+#login {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8f4ee;
+    text-align: center;
+}
+
+#login h2 {
+    font-family: 'Syne';
+    font-weight: 700;
+    font-size: 30px;
+    color: #1D6154;
+    margin-bottom: 20px;
+}
+
+#login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login label {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+#login input[type="email"],
+#login input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #1D6154;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Syne';
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+#login input[type="submit"]:hover {
+    background-color: #164d3d;
+}
+
+.forgot-password {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #1D6154;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}

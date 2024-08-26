@@ -121,7 +121,7 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
-#portfolio h2 {
+#title2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
@@ -278,3 +278,93 @@ footer nav ul {
 .forgot-password:hover {
     text-decoration: underline;
 }
+
+/* Style de la modale */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+	border-radius: 10px; /* Ajout d'un bord arrondi */
+    border: 1px solid #888;
+    width: 630px;
+	height: 688px;
+}
+
+.modal-content h2 {
+	color: #000;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 26px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	margin-top: 60px;
+}
+.modal-gallery {
+	margin-top: 46px;
+	margin-left: 105px;
+}
+
+.modal-gallery img {
+    width: 77px;
+    height: 103px;
+    object-fit: cover; /* Pour s'assurer que l'image conserve son aspect tout en remplissant la taille spécifiée */
+}
+
+.close {
+    color: black;
+    float: right;
+    width: 24px;
+	height: 24px;
+	margin: 26px 30px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Conteneur de chaque image et son bouton de suppression */
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+
+
+.delete-button {
+    background-color: black; /* Assure que le fond est noir */
+    border: none; /* Supprime les bordures */
+    cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+    padding: 2px 4px;
+	width: 17px; /* Ajuste la taille du SVG si nécessaire */
+    height: 17px;
+	position: absolute;
+    top: 5px;
+    right: 5px;
+	border-radius: 2px; /* Ajout d'un bord arrondi */
+}
+
+.delete-button svg {
+    width: 9px; /* Ajuste la taille du SVG si nécessaire */
+    height: 11px;
+    fill: white; /* Change la couleur si nécessaire */
+
+}
+

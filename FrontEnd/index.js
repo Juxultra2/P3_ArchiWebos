@@ -178,6 +178,16 @@ function displayWorksInModal(works) {
     });
 }
 
+// Récupére le token d'authentification dans localStorage ou sessionStorage
+const token = localStorage.getItem('authToken'); // Récupérer le token
+
+// Vérifier si le token existe
+if (token) {
+    document.getElementById('editGalleryButton').style.display = 'block'; // Affiche le bouton
+} else {
+    document.getElementById('editGalleryButton').style.display = 'none'; // Cache le bouton
+}
+
 
 
 async function deleteWork(workId) {

@@ -44,3 +44,4 @@ async function handleLogin(event) {
 
 // Attacher l'événement de soumission du formulaire
 document.getElementById('loginForm').addEventListener('submit', handleLogin);
+

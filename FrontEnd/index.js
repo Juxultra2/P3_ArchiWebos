@@ -183,9 +183,9 @@ const token = localStorage.getItem('authToken'); // Récupérer le token
 
 // Vérifier si le token existe
 if (token) {
-    document.getElementById('editGalleryButton').style.display = 'block'; // Affiche le bouton
+    document.getElementById('editGalleryButton').style.display = 'block'; // Affiche le bouton modifier
 } else {
-    document.getElementById('editGalleryButton').style.display = 'none'; // Cache le bouton
+    document.getElementById('editGalleryButton').style.display = 'none'; // Cache le bouton modifier
 }
 
 

@@ -44,16 +44,54 @@
 		<!-- Modale -->
 		<div id="modal" class="modal">
 			<div class="modal-content">
-				<span class="close">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-						<path d="M17.6546 8.05106C18.1235 7.58214 18.1235 6.82061 17.6546 6.35169C17.1856 5.88277 16.4241 5.88277 15.9552 6.35169L12.005 10.3056L8.05106 6.35544C7.58214 5.88652 6.82061 5.88652 6.35169 6.35544C5.88277 6.82436 5.88277 7.58589 6.35169 8.05481L10.3056 12.005L6.35544 15.9589C5.88652 16.4279 5.88652 17.1894 6.35544 17.6583C6.82436 18.1272 7.58589 18.1272 8.05481 17.6583L12.005 13.7044L15.9589 17.6546C16.4279 18.1235 17.1894 18.1235 17.6583 17.6546C18.1272 17.1856 18.1272 16.4241 17.6583 15.9552L13.7044 12.005L17.6546 8.05106Z" fill="black"/>
-					</svg>
-				</span>
-				<h2>Galerie photo</h2>
-				<div class="modal-gallery">
-					<!-- Les travaux seront chargés ici dynamiquement -->
+				
+				<!-- Vue Galerie Photo -->
+				<div class="modalGaleriePhoto">
+					<span class="close">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M17.6546 8.05106C18.1235 7.58214 18.1235 6.82061 17.6546 6.35169C17.1856 5.88277 16.4241 5.88277 15.9552 6.35169L12.005 10.3056L8.05106 6.35544C7.58214 5.88652 6.82061 5.88652 6.35169 6.35544C5.88277 6.82436 5.88277 7.58589 6.35169 8.05481L10.3056 12.005L6.35544 15.9589C5.88652 16.4279 5.88652 17.1894 6.35544 17.6583C6.82436 18.1272 7.58589 18.1272 8.05481 17.6583L12.005 13.7044L15.9589 17.6546C16.4279 18.1235 17.1894 18.1235 17.6583 17.6546C18.1272 17.1856 18.1272 16.4241 17.6583 15.9552L13.7044 12.005L17.6546 8.05106Z" fill="black"/>
+						</svg>
+					</span>
+					<h2>Galerie photo</h2>
+					<div class="modal-gallery">
+						<!-- Les travaux seront chargés ici dynamiquement -->
+					</div>
+					<button id="addPhotoButton" class="add-button">Ajouter une photo</button>
 				</div>
-				<button id="addPhotoButton" class="add-button">Ajouter une photo</button>
+			
+			
+				<!-- Vue Ajout Photo -->
+				<div id="modalAjoutPhoto" class="modal-vue cacher">
+					<div class="modal-header">
+						<button id="back-to-gallery">
+							<svg xmlns="http://www.w3.org/2000/svg" width="21" height="18" viewBox="0 0 21 18" fill="none">
+								<path d="M0.439478 7.94458C-0.146493 8.53055 -0.146493 9.48217 0.439478 10.0681L7.9399 17.5686C8.52587 18.1545 9.47748 18.1545 10.0635 17.5686C10.6494 16.9826 10.6494 16.031 10.0635 15.445L5.11786 10.5041H19.4999C20.3297 10.5041 21 9.83375 21 9.00402C21 8.17428 20.3297 7.50393 19.4999 7.50393H5.12255L10.0588 2.56303C10.6447 1.97706 10.6447 1.02545 10.0588 0.439478C9.47279 -0.146493 8.52118 -0.146493 7.93521 0.439478L0.43479 7.9399L0.439478 7.94458Z" fill="black"/>
+							</svg>
+						</button>
+						<h2>Ajout photo</h2>
+					</div>
+					<form id="add-photo-form">
+						<div class="form-group">
+							<label for="photo-upload">+ Ajouter photo</label>
+							<input type="file" id="photo-upload" accept=".jpg, .jpeg, .png" required>
+							<small>jpg, png : 4mo max</small>
+						</div>
+						<div class="form-group">
+							<label for="photo-title">Titre</label>
+							<input type="text" id="photo-title" placeholder="Titre de la photo" required>
+						</div>
+						<div class="form-group">
+							<label for="photo-category">Catégorie</label>
+							<select id="photo-category" required>
+								<!-- Ajoute de la catégories ici -->
+								<option value="Objets">Objets</option>
+								<option value="Appartements">Appartements</option>
+								<option value="hotels">Hotels & restaurants</option>
+							</select>
+						</div>
+						<button type="submit" class="validate-button">Valider</button>
+					</form>
+				</div>
 			</div>
 		</div>
 		<div class="filters" id="filters">
@@ -62,50 +100,6 @@
 		<div class="gallery">
 			<!-- Galerie d'images récupérer dynamiquement depuis l'API via fetch -->
 			
-			<!-- <figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure> -->
 		</div>
 	</section>
 	<section id="contact">

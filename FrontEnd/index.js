@@ -189,7 +189,7 @@ if (token) {
 }
 
 
-
+//fonction pour supprimer les projets en admin
 async function deleteWork(workId) {
     const confirmDelete = confirm("Êtes-vous sûr de vouloir supprimer ce travail ?");
     if (!confirmDelete) return;
@@ -214,3 +214,66 @@ async function deleteWork(workId) {
         alert('Une erreur est survenue lors de la suppression.');
     }
 }
+
+
+//gestion des vues de la modale
+document.getElementById('addPhotoButton').addEventListener('click', function() {
+    // Masquer la première vue
+    document.getElementById('modalGaleriePhoto').classList.add('cacher');
+
+    // Afficher la deuxième vue
+    document.getElementById('modalAjoutPhoto').classList.remove('cacher');
+});
+
+document.getElementById('back-to-gallery').addEventListener('click', function() {
+    // Masquer la deuxième vue
+    document.getElementById('modalAjoutPhoto').classList.add('cacher');
+
+    // Afficher la première vue
+    document.getElementById('modalGaleriePhoto').classList.remove('cacher');
+});
+
+
+
+// Gestion de la soumission du formulaire pour ajouter un nouveau projet
+document.getElementById('add-photo-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Empêche la soumission standard du formulaire
+
+    // Créer un objet FormData à partir du formulaire
+    const formData = new FormData(this);
+
+    // Vérifier si les champs requis sont remplis
+    if (!formData.get('title') || !formData.get('categoryId') || !formData.get('image')) {
+        alert("Veuillez remplir tous les champs requis.");
+        return;
+    }
+
+    // Préparer la requête
+    try {
+        const response = await fetch(apiUrlWorks, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}` // Si un token est requis
+            },
+            body: formData // Envoyer les données sous forme de FormData
+        });
+
+        if (response.ok) {
+            const addedWork = await response.json();
+            console.log('Nouveau projet ajouté:', addedWork);
+            
+            // Mettre à jour la galerie avec le nouveau projet ajouté
+            fetchWorks().then(works => displayWorks(works));
+
+            // Revenir à la première vue de la modale
+            document.getElementById('modalAjoutPhoto').classList.add('cacher');
+            document.getElementById('modalGaleriePhoto').classList.remove('cacher');
+        } else {
+            throw new Error(`Erreur lors de l'ajout du projet: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue lors de l\'ajout du projet.');
+    }
+});
+

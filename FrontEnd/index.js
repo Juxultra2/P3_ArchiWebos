@@ -105,6 +105,68 @@ fetchWorks();
 
 
 
+// Fonction pour vérifier la connexion de l'utilisateur et cacher l'élément
+function checkUserConnectionAndHideFilters() {
+    // Vérifier si l'utilisateur est connecté, ici on vérifie la présence d'un token
+    const token = localStorage.getItem('authToken'); // Remplacez 'authToken' par la clé que vous utilisez
+
+    // Sélectionner l'élément à cacher
+    const filters = document.getElementById('filters');
+
+    if (token) {
+        // Si le token est présent (l'utilisateur est connecté), cacher l'élément
+        filters.style.display = 'none';
+    } else {
+        // Si le token n'est pas présent (l'utilisateur n'est pas connecté), afficher l'élément
+        filters.style.display = 'block';
+    }
+}
+
+// Appeler la fonction pour vérifier la connexion de l'utilisateur et ajuster l'affichage
+checkUserConnectionAndHideFilters();
+
+
+
+// Fonction pour vérifier la connexion de l'utilisateur et ajuster l'affichage
+function checkUserConnectionAndUpdateUI() {
+    const token = localStorage.getItem('authToken'); // Remplacez 'authToken' par la clé que vous utilisez
+
+    // Sélectionner les éléments à afficher ou cacher
+    const logoutButton = document.getElementById('logoutButton');
+    const loginButton = document.getElementById('loginButton');
+    const filters = document.getElementById('filters');
+
+    if (token) {
+        // Si le token est présent (l'utilisateur est connecté), cacher les filtres et afficher le bouton de déconnexion
+        filters.style.display = 'none';
+        logoutButton.style.display = 'block';
+        loginButton.style.display = 'none';
+    } else {
+        // Si le token n'est pas présent (l'utilisateur n'est pas connecté), afficher les filtres et afficher le bouton de connexion
+        filters.style.display = 'block';
+        logoutButton.style.display = 'none';
+        loginButton.style.display = 'block';
+    }
+}
+
+// Fonction pour déconnecter l'utilisateur
+function logout() {
+    // Supprimer le token du stockage local
+    localStorage.removeItem('authToken');
+
+    // Appeler la fonction pour mettre à jour l'interface utilisateur
+    checkUserConnectionAndUpdateUI();
+}
+
+// Ajouter un événement pour le bouton de déconnexion
+document.getElementById('logoutButton').addEventListener('click', logout);
+
+// Appeler la fonction pour vérifier la connexion de l'utilisateur et ajuster l'affichage lors du chargement de la page
+window.addEventListener('DOMContentLoaded', (event) => {
+    checkUserConnectionAndUpdateUI();
+});
+
+
 // MODAL
 
 // Sélectionner les éléments de la modale
@@ -144,6 +206,7 @@ window.addEventListener("click", function(event) {
     }
 });
 
+// Modale Vue Galerie Photo
 function displayWorksInModal(works) {
     console.log("Displaying works in modal:", works);
     const modalGallery = document.querySelector('.modal-gallery');
@@ -243,11 +306,23 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
     const formData = new FormData(this);
 
     // Vérifier si les champs requis sont remplis
-    if (!formData.get('title') || !formData.get('categoryId') || !formData.get('image')) {
+    if (!formData.get('title') || !formData.get('categoryId') || !formData.get('imageUrl')) {
         alert("Veuillez remplir tous les champs requis.");
         return;
     }
 
+    const token = localStorage.getItem('authToken'); // Récupérer le token
+
+    if (!token) {
+        alert('Token d\'authentification manquant.');
+        return;
+    }
+
+    // Debug: Voir les données FormData
+    for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+    }
+    
     // Préparer la requête
     try {
         const response = await fetch(apiUrlWorks, {
@@ -276,4 +351,7 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         alert('Une erreur est survenue lors de l\'ajout du projet.');
     }
 });
+
+
+
 

@@ -17,8 +17,9 @@
 	<nav>
 		<ul>
 			<li><a href="index.html">projets</a></li>
-			<li><a href="contact.html">contact</a></li>
+			<li><a href="index.html">contact</a></li>
 			<li><a href="login.html">login</a></li>
+			<li><button id="logoutButton" style="display: none;">Déconnexion</button></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -73,24 +74,24 @@
 					<form id="add-photo-form">
 						<div class="form-group">
 							<label for="photo-upload">+ Ajouter photo</label>
-							<input type="file" id="photo-upload" accept=".jpg, .jpeg, .png" required>
+							<input type="file" id="photo-upload" name="imageUrl" accept=".jpg, .jpeg, .png" required>
 							<small>jpg, png : 4mo max</small>
 						</div>
 						<div class="form-group">
 							<label for="photo-title">Titre</label>
-							<input type="text" id="photo-title" placeholder="Titre de la photo" required>
+							<input type="text" id="photo-title" name="title" placeholder="Titre de la photo" required>
 						</div>
 						<div class="form-group">
 							<label for="photo-category">Catégorie</label>
-							<select id="photo-category" required>
-								<!-- Ajoute de la catégories ici -->
-								<option value="Objets">Objets</option>
-								<option value="Appartements">Appartements</option>
-								<option value="hotels">Hotels & restaurants</option>
+							<select id="photo-category" name="categoryId" required>
+								<option value="1">Objets</option>
+								<option value="2">Appartements</option>
+								<option value="3">Hôtels & restaurants</option>
 							</select>
 						</div>
 						<button type="submit" class="validate-button">Valider</button>
 					</form>
+					
 				</div>
 			</div>
 		</div>

@@ -302,11 +302,15 @@ document.getElementById('back-to-gallery').addEventListener('click', function() 
 document.getElementById('add-photo-form').addEventListener('submit', async function(event) {
     event.preventDefault(); // Empêche la soumission standard du formulaire
 
-    // Créer un objet FormData à partir du formulaire
-    const formData = new FormData(this);
+    // Récupération des valeurs du formulaire
+    const title = document.getElementById('title').value;
+    const imageUrl = document.getElementById('imageUrl').value;
+    const categoryId = document.getElementById('category').value;
+
+    console.log(title, imageUrl, categoryId); // Devrait afficher les éléments ou null
 
     // Vérifier si les champs requis sont remplis
-    if (!formData.get('title') || !formData.get('categoryId') || !formData.get('imageUrl')) {
+    if (!title || !categoryId || !imageUrl) {
         alert("Veuillez remplir tous les champs requis.");
         return;
     }
@@ -318,20 +322,30 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         return;
     }
 
-    // Debug: Voir les données FormData
-    for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-    }
+    // Créer l'objet JavaScript à envoyer
+    const newWork = {
+        id: 0, // L'API générera probablement cet ID automatiquement
+        title: title,
+        imageUrl: imageUrl,
+        categoryId: categoryId,
+        userId: 1 // Remplacez ceci par l'ID de l'utilisateur si nécessaire
+    };
+
     
-    // Préparer la requête
+    // Debug: Voir l'objet à envoyer (facultatif)
+    console.log("Objet envoyé:", newWork);
+
+    // Envoyer les données à l'API
     try {
         const response = await fetch(apiUrlWorks, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}` // Si un token est requis
+                'Content-Type': 'application/json', // Indiquer que le corps de la requête est en JSON
+                'Authorization': `Bearer ${token}` // Ajouter le token d'authentification
             },
-            body: formData // Envoyer les données sous forme de FormData
+            body: JSON.stringify(newWork) // Convertir l'objet en JSON
         });
+
 
         if (response.ok) {
             const addedWork = await response.json();

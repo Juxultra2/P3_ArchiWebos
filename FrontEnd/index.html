@@ -71,19 +71,20 @@
 						</button>
 						<h2>Ajout photo</h2>
 					</div>
+
 					<form id="add-photo-form">
 						<div class="form-group">
-							<label for="photo-upload">+ Ajouter photo</label>
-							<input type="file" id="photo-upload" name="imageUrl" accept=".jpg, .jpeg, .png" required>
+							<label for="imageUrl">+ Ajouter photo</label>
+							<input type="file" id="imageUrl" name="imageUrl" accept=".jpg, .jpeg, .png" required>
 							<small>jpg, png : 4mo max</small>
 						</div>
 						<div class="form-group">
-							<label for="photo-title">Titre</label>
-							<input type="text" id="photo-title" name="title" placeholder="Titre de la photo" required>
+							<label for="title">Titre</label>
+							<input type="text" id="title" name="title" placeholder="Titre de la photo" required>
 						</div>
 						<div class="form-group">
-							<label for="photo-category">Catégorie</label>
-							<select id="photo-category" name="categoryId" required>
+							<label for="category">Catégorie</label>
+							<select id="category" name="categoryId" required>
 								<option value="1">Objets</option>
 								<option value="2">Appartements</option>
 								<option value="3">Hôtels & restaurants</option>

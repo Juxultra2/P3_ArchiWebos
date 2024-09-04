@@ -298,19 +298,16 @@ document.getElementById('back-to-gallery').addEventListener('click', function() 
 
 
 
+
 // Gestion de la soumission du formulaire pour ajouter un nouveau projet
 document.getElementById('add-photo-form').addEventListener('submit', async function(event) {
     event.preventDefault(); // Empêche la soumission standard du formulaire
 
-    // Récupération des valeurs du formulaire
-    const title = document.getElementById('title').value;
-    const imageUrl = document.getElementById('imageUrl').value;
-    const categoryId = document.getElementById('category').value;
-
-    console.log(title, imageUrl, categoryId); // Devrait afficher les éléments ou null
+    // Créer un objet FormData à partir du formulaire
+    const formData = new FormData(this);
 
     // Vérifier si les champs requis sont remplis
-    if (!title || !categoryId || !imageUrl) {
+    if (!formData.get('title') || !formData.get('categoryId') || !formData.get('imageUrl')) {
         alert("Veuillez remplir tous les champs requis.");
         return;
     }
@@ -322,30 +319,20 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         return;
     }
 
-    // Créer l'objet JavaScript à envoyer
-    const newWork = {
-        id: 0, // L'API générera probablement cet ID automatiquement
-        title: title,
-        imageUrl: imageUrl,
-        categoryId: categoryId,
-        userId: 1 // Remplacez ceci par l'ID de l'utilisateur si nécessaire
-    };
-
+    // Debug: Voir les données FormData
+    for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+    }
     
-    // Debug: Voir l'objet à envoyer (facultatif)
-    console.log("Objet envoyé:", newWork);
-
-    // Envoyer les données à l'API
+    // Préparer la requête
     try {
         const response = await fetch(apiUrlWorks, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json', // Indiquer que le corps de la requête est en JSON
-                'Authorization': `Bearer ${token}` // Ajouter le token d'authentification
+                'Authorization': `Bearer ${token}` // Si un token est requis
             },
-            body: JSON.stringify(newWork) // Convertir l'objet en JSON
+            body: formData // Envoyer les données sous forme de FormData
         });
-
 
         if (response.ok) {
             const addedWork = await response.json();
@@ -365,7 +352,3 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         alert('Une erreur est survenue lors de l\'ajout du projet.');
     }
 });
-
-
-
-

@@ -13,9 +13,8 @@ async function fetchWorks() {
         }
         // Parse la réponse en JSON
         const works = await response.json();
-        // Affiche les travaux récupérés
-        displayWorks(works);
-        console.log(works);
+        
+        return works
     } catch (error) {
         console.error('Error fetching works:', error);
     }
@@ -101,7 +100,10 @@ async function fetchWorksByCategory(categoryId) {
 
 // Appeler les fonctions pour récupérer et afficher les catégories et les travaux par défaut
 fetchCategories();
-fetchWorks();
+fetchWorks().then(works => {
+    displayWorksInModal(works)
+    displayWorks(works)
+    })
 
 
 
@@ -268,7 +270,10 @@ async function deleteWork(workId) {
         if (response.ok) {
             alert('Le travail a été supprimé avec succès.');
             // Mettre à jour la galerie dans la modale
-            fetchWorks().then(works => displayWorksInModal(works));
+            fetchWorks().then(works => {
+                displayWorksInModal(works)
+                displayWorks(works)
+            });
         } else {
             throw new Error(`Erreur lors de la suppression: ${response.status}`);
         }
@@ -307,7 +312,7 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
     const formData = new FormData(this);
 
     // Vérifier si les champs requis sont remplis
-    if (!formData.get('title') || !formData.get('categoryId') || !formData.get('imageUrl')) {
+    if (!formData.get('title') || !formData.get('category') || !formData.get('image')) {
         alert("Veuillez remplir tous les champs requis.");
         return;
     }
@@ -329,9 +334,9 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         const response = await fetch(apiUrlWorks, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}` // Si un token est requis
+                'Authorization': `Bearer ${token}`, // Si un token est requis
             },
-            body: formData // Envoyer les données sous forme de FormData
+            body: formData, // Envoyer les données sous forme de FormData
         });
 
         if (response.ok) {
@@ -339,7 +344,10 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
             console.log('Nouveau projet ajouté:', addedWork);
             
             // Mettre à jour la galerie avec le nouveau projet ajouté
-            fetchWorks().then(works => displayWorks(works));
+            fetchWorks().then(works => {
+                displayWorksInModal(works)
+                displayWorks(works)
+            });
 
             // Revenir à la première vue de la modale
             document.getElementById('modalAjoutPhoto').classList.add('cacher');

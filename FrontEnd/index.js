@@ -120,7 +120,7 @@ function checkUserConnectionAndHideFilters() {
         filters.style.display = 'none';
     } else {
         // Si le token n'est pas présent (l'utilisateur n'est pas connecté), afficher l'élément
-        filters.style.display = 'block';
+        filters.style.display = 'flex';
     }
 }
 
@@ -178,7 +178,7 @@ const closeButton = document.querySelector(".close");
 
 // Ouvrir la modale
 editGalleryButton.addEventListener("click", function() {
-    modal.style.display = "block";
+    modal.style.display = "flex";
     fetchWorksForModal(); // Ajout ici pour charger les travaux dans la modale
 });
 
@@ -248,7 +248,7 @@ const token = localStorage.getItem('authToken'); // Récupérer le token
 
 // Vérifier si le token existe
 if (token) {
-    document.getElementById('editGalleryButton').style.display = 'block'; // Affiche le bouton modifier
+    document.getElementById('editGalleryButton').style.display = 'flex'; // Affiche le bouton modifier
 } else {
     document.getElementById('editGalleryButton').style.display = 'none'; // Cache le bouton modifier
 }

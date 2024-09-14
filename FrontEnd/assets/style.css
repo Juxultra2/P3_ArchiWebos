@@ -121,10 +121,38 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
-#title2 {
+
+
+#editGalleryButton {
+	color: #000;
 	text-align: center;
-	margin-bottom: 1em;
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	background: none; 
+    border: none;     
+    cursor: pointer;  
+	margin-top: 0.5rem;
 }
+
+#editGalleryButton svg {
+	color: #000;
+	width: 15.58px;
+	height: 15.58px;
+	flex-shrink: 0;
+	margin-left: 1.5rem;
+	margin-right: 0.5rem;
+}
+
+#projets {
+	display: flex;
+	justify-content: center;
+	margin: 6rem 0;
+}
+
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -279,6 +307,9 @@ footer nav ul {
     text-decoration: underline;
 }
 
+
+
+
 /* Style de la modale */
 .modal {
     display: none;
@@ -372,6 +403,3 @@ footer nav ul {
     display: none;
 } 
 
-/* .modal-vue {
-    display: block; 
-} */

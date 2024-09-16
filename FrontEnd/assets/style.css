@@ -310,7 +310,21 @@ footer nav ul {
 
 
 
-/* Style de la modale */
+/* Style de la modale galerie photo */
+
+.modal-vue{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.modal-header {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	position: relative;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -345,8 +359,8 @@ footer nav ul {
 	margin-top: 60px;
 }
 .modal-gallery {
-	margin-top: 46px;
-	margin-left: 105px;
+	margin: 45px 96px;
+	
 }
 
 .modal-gallery img {
@@ -357,10 +371,11 @@ footer nav ul {
 
 .close {
     color: black;
-    float: right;
     width: 24px;
 	height: 24px;
-	margin: 26px 30px;
+	position: absolute;
+    top: 26px;
+    right: 30px;
 }
 
 .close:hover,
@@ -370,14 +385,31 @@ footer nav ul {
     cursor: pointer;
 }
 
+#addPhotoButton {
+	width: 237px;
+	height: 36px;
+	flex-shrink: 0;
+	border-radius: 60px;
+	background: #1D6154;
+	border: none;
+	color: #FFF;
+	text-align: center;
+	font-family: Syne;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	margin-top: 10px;
+}
+
+
+
 /* Conteneur de chaque image et son bouton de suppression */
 .image-container {
     position: relative;
     display: inline-block;
-    margin: 10px;
+    margin: 12px 5px;
 }
-
-
 
 .delete-button {
     background-color: black; /* Assure que le fond est noir */
@@ -398,6 +430,85 @@ footer nav ul {
     fill: white; /* Change la couleur si nécessaire */
 
 }
+
+
+/* Style de la modale */
+
+#back-to-gallery {
+	width: 21px;
+	height: 21px;
+	flex-shrink: 0;
+	background: none;
+	padding: 0;
+	border: none;
+	position: absolute;
+    top: 26px;
+    left: 30px;
+}
+
+#add-photo-form {
+	margin-top: 36px;
+}
+
+.ajoutPhoto-group {
+	border-radius: 3px;
+	background: #E8F1F6;
+	width: 420px;
+	height: 169px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.ajoutPhoto-group svg {
+margin-top: 13px;
+margin-bottom: 6px;
+}
+
+.ajoutPhoto-group small {
+	margin-top: 7px;
+	}
+
+.titre-group {
+	margin-top: 30px;
+}
+
+.categorie-group {
+	margin-top: 21px;
+}
+
+.file-upload {
+	color: #306685;
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	width: 173px;
+	height: 36px;
+	flex-shrink: 0;
+	border-radius: 50px;
+	background: #CBD6DC;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.file-upload:hover {
+	background-color: #74809e; /* Changement de couleur au survol */
+}
+
+
+
+hr.separator {
+	width: 420px;
+	height: 1px;
+	background-color: #B3B3B3; 
+	border: none; /* Supprimer les bordures par défaut */
+	margin: 20px auto; /* Centrer et ajouter un espacement autour */
+}
+
 
 .cacher {
     display: none;

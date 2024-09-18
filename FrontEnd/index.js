@@ -64,6 +64,7 @@ async function fetchCategories() {
 // Fonction pour afficher les catégories dans le menu de filtres
 function displayCategories(categories) {
     const filterContainer = document.getElementById('filters');
+    const select =document.getElementById('categoryId')
     filterContainer.innerHTML = ''; // Efface tous les filtres existants
 
     // Ajout d'un bouton pour afficher tous les travaux
@@ -78,6 +79,10 @@ function displayCategories(categories) {
         button.textContent = category.name;
         button.addEventListener('click', () => fetchWorksByCategory(category.id));
         filterContainer.appendChild(button);
+        const option = document.createElement('option')
+        option.textContent = category.name;
+        option.value = categories.id;
+        select.appendChild(option)
     });
 }
 
@@ -130,24 +135,27 @@ checkUserConnectionAndHideFilters();
 
 
 // Fonction pour vérifier la connexion de l'utilisateur et ajuster l'affichage
-function checkUserConnectionAndUpdateUI() {
+function checkLoginStatus() {
     const token = localStorage.getItem('authToken'); // Remplacez 'authToken' par la clé que vous utilisez
 
     // Sélectionner les éléments à afficher ou cacher
     const logoutButton = document.getElementById('logoutButton');
     const loginButton = document.getElementById('loginButton');
     const filters = document.getElementById('filters');
+    const editGalleryButton = document.getElementById('editGalleryButton'); 
 
     if (token) {
         // Si le token est présent (l'utilisateur est connecté), cacher les filtres et afficher le bouton de déconnexion
         filters.style.display = 'none';
         logoutButton.style.display = 'block';
         loginButton.style.display = 'none';
+        editGalleryButton.style.display = 'flex';
     } else {
         // Si le token n'est pas présent (l'utilisateur n'est pas connecté), afficher les filtres et afficher le bouton de connexion
-        filters.style.display = 'block';
+        filters.style.display = 'flex';
         logoutButton.style.display = 'none';
         loginButton.style.display = 'block';
+        editGalleryButton.style.display = 'none';
     }
 }
 
@@ -157,7 +165,7 @@ function logout() {
     localStorage.removeItem('authToken');
 
     // Appeler la fonction pour mettre à jour l'interface utilisateur
-    checkUserConnectionAndUpdateUI();
+    checkLoginStatus();
 }
 
 // Ajouter un événement pour le bouton de déconnexion
@@ -165,7 +173,7 @@ document.getElementById('logoutButton').addEventListener('click', logout);
 
 // Appeler la fonction pour vérifier la connexion de l'utilisateur et ajuster l'affichage lors du chargement de la page
 window.addEventListener('DOMContentLoaded', (event) => {
-    checkUserConnectionAndUpdateUI();
+    checkLoginStatus();
 });
 
 
@@ -175,6 +183,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const modal = document.getElementById("modal");
 const editGalleryButton = document.getElementById("editGalleryButton");
 const closeButton = document.querySelector(".close");
+const closeButton2 = document.querySelector(".close2");
 
 // Ouvrir la modale
 editGalleryButton.addEventListener("click", function() {
@@ -198,6 +207,9 @@ async function fetchWorksForModal() {
 
 // Fermer la modale quand l'utilisateur clique sur le X
 closeButton.addEventListener("click", function() {
+    modal.style.display = "none";
+});
+closeButton2.addEventListener("click", function() {
     modal.style.display = "none";
 });
 
@@ -360,3 +372,25 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         alert('Une erreur est survenue lors de l\'ajout du projet.');
     }
 });
+
+// prévisualisation de l'image sélectionnée avant la soumission du formulaire
+const inputImage = document.getElementById('imageUrl');
+const imagePreview = document.getElementById('imagePreview');
+
+// Écoute l'événement 'change' sur l'inputImage
+inputImage.addEventListener('change', function(event) {
+    const file = event.target.files[0]; // Récupère le fichier sélectionné
+    
+    if (file) {
+        const reader = new FileReader(); // Utilise FileReader pour lire l'image
+
+        // Quand le fichier est chargé, met à jour la source de l'image de prévisualisation
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result; // Affecte le contenu de l'image
+            imagePreview.style.display = 'block'; // Affiche l'image
+        };
+
+        reader.readAsDataURL(file); // Lis l'image comme URL
+    }
+});
+

@@ -47,6 +47,10 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
+html {
+	background: #FFFEF8;
+}
+
 body {
 	max-width: 1140px;
 	margin:auto;
@@ -91,13 +95,41 @@ nav ul {
 
 }
 nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+	margin: 0 px;
+	font-size: 16px;
 }
 
-li:hover {
-	color: #B1663C;
+
+
+header nav a, header nav button {
+	color: #000;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-decoration: none;
+	margin: 0 22px;
 }
+
+header nav button {
+	border: none;
+	background: none;
+}
+
+#logoInsa {
+	width: 22px;
+	height: 22px;
+	margin-left: 22px;
+	flex-shrink: 0;
+}
+
+
+#loginBold {
+	font-weight: 600;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -149,7 +181,7 @@ li:hover {
 #projets {
 	display: flex;
 	justify-content: center;
-	margin: 6rem 0;
+	margin: 139px 0 55px 0;
 }
 
 
@@ -159,6 +191,7 @@ li:hover {
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
+	margin-top: 45px;
 }
 
 .gallery img {
@@ -197,7 +230,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+/* input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -206,7 +239,7 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
-}
+} */
 
 footer nav ul {
 	display: flex;
@@ -217,44 +250,41 @@ footer nav ul {
 /* Style pour les filtres de la galery */
 
 .filters {
-    display: flex;
     justify-content: center;
-    margin-bottom: 20px;
 }
 
 .filters button {
-    font-family: 'Work Sans';
-    margin: 0 10px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #1D6154;
-    color: #fff;
+    margin: 0 5px;
+    padding: 10px 25px;
+    color: #1D6154;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 60px;
+	border: 1px solid #1D6154;
+	text-align: center;
+	font-family: Syne;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	background-color: #FFF;
 }
 
 .filters button.active,
 .filters button:hover {
-    background-color: #164d3d;
+    background-color: #1D6154;
+	color: #FFF;
 }
 
 
 /* Style pour la page de login */
 #login {
     max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f8f4ee;
+    margin: 150px auto;
     text-align: center;
 }
 
 #login h2 {
-    font-family: 'Syne';
-    font-weight: 700;
-    font-size: 30px;
-    color: #1D6154;
-    margin-bottom: 20px;
+    margin-bottom: 37px;
 }
 
 #login form {
@@ -266,41 +296,48 @@ footer nav ul {
 #login label {
     width: 100%;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     text-align: left;
 }
 
 #login input[type="email"],
 #login input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    width: 365px;
+    padding: 0 15px;
+    margin-bottom: 30px;
+	background-color: #000;
 }
+
 
 #login input[type="submit"] {
     padding: 10px 20px;
-    background-color: #1D6154;
-    color: #fff;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-family: 'Syne';
-    font-weight: 700;
-    margin-top: 20px;
+	width: 180px;
+    border-radius: 60px;
+	background: #1D6154;
+	color: #FFF;
+	text-align: center;
+	font-family: Syne;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	margin: 7px 0 28px 0 ;
 }
 
 #login input[type="submit"]:hover {
-    background-color: #164d3d;
+    background-color: #0c4836;
 }
 
 .forgot-password {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #1D6154;
-    text-decoration: none;
+    color: #3D3D3D;
+    font-family: "Work Sans";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	text-decoration-line: none;
 }
 
 .forgot-password:hover {
@@ -369,7 +406,8 @@ footer nav ul {
     object-fit: cover; /* Pour s'assurer que l'image conserve son aspect tout en remplissant la taille spécifiée */
 }
 
-.close {
+.close,
+.close2 {
     color: black;
     width: 24px;
 	height: 24px;
@@ -385,22 +423,6 @@ footer nav ul {
     cursor: pointer;
 }
 
-#addPhotoButton {
-	width: 237px;
-	height: 36px;
-	flex-shrink: 0;
-	border-radius: 60px;
-	background: #1D6154;
-	border: none;
-	color: #FFF;
-	text-align: center;
-	font-family: Syne;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
-	margin-top: 10px;
-}
 
 
 
@@ -416,7 +438,7 @@ footer nav ul {
     border: none; /* Supprime les bordures */
     cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
     padding: 2px 4px;
-	width: 17px; /* Ajuste la taille du SVG si nécessaire */
+	width: 17px; 
     height: 17px;
 	position: absolute;
     top: 5px;
@@ -425,9 +447,9 @@ footer nav ul {
 }
 
 .delete-button svg {
-    width: 9px; /* Ajuste la taille du SVG si nécessaire */
+    width: 9px; 
     height: 11px;
-    fill: white; /* Change la couleur si nécessaire */
+    fill: white; 
 
 }
 
@@ -448,6 +470,9 @@ footer nav ul {
 
 #add-photo-form {
 	margin-top: 36px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .ajoutPhoto-group {
@@ -456,9 +481,7 @@ footer nav ul {
 	width: 420px;
 	height: 169px;
 	flex-shrink: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	position: relative
 }
 
 .ajoutPhoto-group svg {
@@ -468,15 +491,77 @@ margin-bottom: 6px;
 
 .ajoutPhoto-group small {
 	margin-top: 7px;
-	}
+	color: #444;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+#cacher-ajoutPhoto {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+
+}
+
+#titreEtCategorie {
+	width: 420px;
+}
+
+#loginForm label,
+#loginForm input,
+.titre-group label, 
+.titre-group input, 
+.categorie-group select, 
+.categorie-group label {
+	color: #3D3D3D;
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.titre-group label,
+.categorie-group label {
+	margin-bottom: 10px;
+}
+
+.titre-group input, 
+.categorie-group select {
+	padding: 0 16px;
+}
 
 .titre-group {
 	margin-top: 30px;
 }
 
+#title,
+#categoryId,
+#email,
+#password {
+	height: 51px;
+	background-color: #FFF;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	border: none;
+}
+
 .categorie-group {
 	margin-top: 21px;
+	margin-bottom: 17px;
 }
+
+.titre-group,
+.categorie-group {
+	display: flex;
+	flex-direction: column;
+	
+}
+
 
 .file-upload {
 	color: #306685;
@@ -499,7 +584,49 @@ margin-bottom: 6px;
 	background-color: #74809e; /* Changement de couleur au survol */
 }
 
+#addPhotoButton {
+	background: #1D6154;
+	margin-top: 10px;
+}
 
+#addPhotoButton, .validate-button {
+	width: 237px;
+	height: 36px;
+	flex-shrink: 0;
+	border-radius: 60px;
+	border: none;
+	color: #FFF;
+	text-align: center;
+	font-family: Syne;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+#preview-container {
+	width: 127px;
+	height: 169px;
+	flex-shrink: 0;
+	position: absolute;
+	top: 0px;
+    left: 150px;
+}
+
+#preview-container img{
+	display: none; 
+	max-width: 100%; 
+	height: auto;
+}
+
+.validate-button {
+	background: #A7A7A7;
+	margin-top: 12px;
+}
+
+.validate-button:hover {
+	background-color: #1D6154; /* Changement de couleur au survol */
+}
 
 hr.separator {
 	width: 420px;
@@ -513,4 +640,3 @@ hr.separator {
 .cacher {
     display: none;
 } 
-

@@ -373,24 +373,45 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
     }
 });
 
+
+
 // prévisualisation de l'image sélectionnée avant la soumission du formulaire
 const inputImage = document.getElementById('imageUrl');
 const imagePreview = document.getElementById('imagePreview');
+const previewContainer = document.getElementById('preview-container');
+const cacherAjoutPhoto = document.getElementById('cacher-ajoutPhoto');
 
 // Écoute l'événement 'change' sur l'inputImage
 inputImage.addEventListener('change', function(event) {
     const file = event.target.files[0]; // Récupère le fichier sélectionné
     
-    if (file) {
+    if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
         const reader = new FileReader(); // Utilise FileReader pour lire l'image
 
         // Quand le fichier est chargé, met à jour la source de l'image de prévisualisation
         reader.onload = function(e) {
             imagePreview.src = e.target.result; // Affecte le contenu de l'image
-            imagePreview.style.display = 'block'; // Affiche l'image
+            previewContainer.style.display = 'block'; // Affiche l'image
+            cacherAjoutPhoto.style.display = 'none'; // Cache cacher-ajoutPhoto
         };
 
         reader.readAsDataURL(file); // Lis l'image comme URL
+    } else {
+        // Si le fichier n'est pas une image valide, affiche une alerte et réinitialise le champ
+        alert('Veuillez sélectionner une image au format JPG ou PNG.');
+        inputImage.value = ''; // Réinitialise le champ
+        imagePreview.src = ''; // Réinitialise la prévisualisation
+        previewContainer.style.display = 'none'; // Cache la prévisualisation
+        cacherAjoutPhoto.style.display = 'flex'; // Réaffiche cacher-ajoutPhoto
     }
 });
+
+// Permet à l'utilisateur de changer d'image en cliquant sur la prévisualisation
+imagePreview.addEventListener('click', function() {
+    inputImage.click(); // Simule un clic sur l'input de fichier
+});
+
+
+
+
 

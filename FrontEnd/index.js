@@ -222,7 +222,6 @@ window.addEventListener("click", function(event) {
 
 // Modale Vue Galerie Photo
 function displayWorksInModal(works) {
-    console.log("Displaying works in modal:", works);
     const modalGallery = document.querySelector('.modal-gallery');
     modalGallery.innerHTML = ''; // Efface le contenu actuel
 
@@ -335,11 +334,6 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         alert('Token d\'authentification manquant.');
         return;
     }
-
-    // Debug: Voir les données FormData
-    for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-    }
     
     // Préparer la requête
     try {
@@ -353,7 +347,6 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
 
         if (response.ok) {
             const addedWork = await response.json();
-            console.log('Nouveau projet ajouté:', addedWork);
             
             // Mettre à jour la galerie avec le nouveau projet ajouté
             fetchWorks().then(works => {

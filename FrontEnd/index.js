@@ -64,7 +64,7 @@ async function fetchCategories() {
 // Fonction pour afficher les catégories dans le menu de filtres
 function displayCategories(categories) {
     const filterContainer = document.getElementById('filters');
-    const select =document.getElementById('categoryId')
+    const select = document.getElementById('categoryId');
     filterContainer.innerHTML = ''; // Efface tous les filtres existants
 
     // Ajout d'un bouton pour afficher tous les travaux
@@ -79,10 +79,10 @@ function displayCategories(categories) {
         button.textContent = category.name;
         button.addEventListener('click', () => fetchWorksByCategory(category.id));
         filterContainer.appendChild(button);
-        const option = document.createElement('option')
+        const option = document.createElement('option');
         option.textContent = category.name;
         option.value = categories.id;
-        select.appendChild(option)
+        select.appendChild(option);
     });
 }
 
@@ -334,6 +334,7 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         alert('Token d\'authentification manquant.');
         return;
     }
+
     
     // Préparer la requête
     try {
@@ -346,7 +347,6 @@ document.getElementById('add-photo-form').addEventListener('submit', async funct
         });
 
         if (response.ok) {
-            const addedWork = await response.json();
             
             // Mettre à jour la galerie avec le nouveau projet ajouté
             fetchWorks().then(works => {
@@ -403,8 +403,3 @@ inputImage.addEventListener('change', function(event) {
 imagePreview.addEventListener('click', function() {
     inputImage.click(); // Simule un clic sur l'input de fichier
 });
-
-
-
-
-

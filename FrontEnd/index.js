@@ -81,7 +81,7 @@ function displayCategories(categories) {
         filterContainer.appendChild(button);
         const option = document.createElement('option');
         option.textContent = category.name;
-        option.value = categories.id;
+        option.value = category.id;
         select.appendChild(option);
     });
 }

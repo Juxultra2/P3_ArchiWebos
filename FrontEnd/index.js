@@ -45,8 +45,6 @@ function displayWorks(works) {
 }
 
 
-
-
 // Fonction pour récupérer les catégories depuis l'API
 async function fetchCategories() {
     try {
@@ -70,7 +68,9 @@ function displayCategories(categories) {
     // Ajout d'un bouton pour afficher tous les travaux
     const allButton = document.createElement('button');
     allButton.textContent = 'Tous';
-    allButton.addEventListener('click', () => fetchWorks());
+    allButton.addEventListener('click', () => fetchWorks().then(works => {
+        displayWorks(works)
+    }));
     filterContainer.appendChild(allButton);
 
     // Ajout des boutons pour chaque catégorie
@@ -81,7 +81,7 @@ function displayCategories(categories) {
         filterContainer.appendChild(button);
         const option = document.createElement('option');
         option.textContent = category.name;
-        option.value = categories.id;
+        option.value = category.id;
         select.appendChild(option);
     });
 }
@@ -108,7 +108,7 @@ fetchCategories();
 fetchWorks().then(works => {
     displayWorksInModal(works)
     displayWorks(works)
-    })
+})
 
 
 

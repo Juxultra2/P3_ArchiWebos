@@ -79,8 +79,8 @@ function displayCategories(categories) {
         button.textContent = category.name;
         button.addEventListener('click', () => fetchWorksByCategory(category.id));
         filterContainer.appendChild(button);
-        const option = document.createElement('option');
-        option.textContent = category.name;
+        const option = document.createElement('option'); //Options pour la liste déroulante
+        option.textContent = category.name; 
         option.value = category.id;
         select.appendChild(option);
     });
@@ -115,8 +115,7 @@ fetchWorks().then(works => {
 // Fonction pour vérifier la connexion de l'utilisateur et cacher l'élément
 function checkUserConnectionAndHideFilters() {
     // Vérifier si l'utilisateur est connecté, ici on vérifie la présence d'un token
-    const token = localStorage.getItem('authToken'); // Remplacez 'authToken' par la clé que vous utilisez
-
+    const token = localStorage.getItem('authToken'); 
     // Sélectionner l'élément à cacher
     const filters = document.getElementById('filters');
 
@@ -136,7 +135,7 @@ checkUserConnectionAndHideFilters();
 
 // Fonction pour vérifier la connexion de l'utilisateur et ajuster l'affichage
 function checkLoginStatus() {
-    const token = localStorage.getItem('authToken'); // Remplacez 'authToken' par la clé que vous utilisez
+    const token = localStorage.getItem('authToken'); // vérifie si un token d'authentification est stocké dans le localStorage du navigateur
 
     // Sélectionner les éléments à afficher ou cacher
     const logoutButton = document.getElementById('logoutButton');
@@ -254,15 +253,14 @@ function displayWorksInModal(works) {
     });
 }
 
-// Récupére le token d'authentification dans localStorage ou sessionStorage
-const token = localStorage.getItem('authToken'); // Récupérer le token
-
-// Vérifier si le token existe
-if (token) {
-    document.getElementById('editGalleryButton').style.display = 'flex'; // Affiche le bouton modifier
-} else {
-    document.getElementById('editGalleryButton').style.display = 'none'; // Cache le bouton modifier
-}
+// // Récupére le token d'authentification dans localStorage ou sessionStorage
+// const token = localStorage.getItem('authToken'); // Récupérer le token
+// // Vérifier si le token existe
+// if (token) {
+//     document.getElementById('editGalleryButton').style.display = 'flex'; // Affiche le bouton modifier
+// } else {
+//     document.getElementById('editGalleryButton').style.display = 'none'; // Cache le bouton modifier
+// }
 
 
 //fonction pour supprimer les projets en admin
@@ -271,6 +269,7 @@ async function deleteWork(workId) {
     if (!confirmDelete) return;
 
     try {
+        const token = localStorage.getItem('authToken'); // Récupérer le token
         const response = await fetch(`${apiUrlWorks}/${workId}`, {
             method: 'DELETE',
             headers: {

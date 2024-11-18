@@ -25,10 +25,10 @@ async function handleLogin(event) {
         }
 
         // Récupérer le token de la réponse
-        const data = await response.json();
+        const data = await response.json(); 
         const token = data.token;
 
-        // Stocker le token dans le stockage local (ou utiliser une autre méthode de stockage)
+        // Stocker le token dans le stockage local 
         localStorage.setItem('authToken', token);
 
         // Redirection vers la page d'accueil
